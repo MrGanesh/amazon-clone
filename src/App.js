@@ -19,7 +19,7 @@ export default function App() {
       // history.push('/')
     }
 
-    if(user?.cart){
+    if(user.cart){
        dispatch({type:"ADD_TO_BASKET",basket:user.cart})   
     }
   },[])
@@ -36,6 +36,8 @@ export default function App() {
         })
       })
   }, [])
+
+
 
   return (
      <Router>

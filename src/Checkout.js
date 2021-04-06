@@ -3,6 +3,7 @@ import './Checkout.css'
 import FlipMove from 'react-flip-move';
 import {useStateValue} from './StateProvider'
 import CheckoutProduct from './CheckoutProduct'
+import Subtotal from './Subtotal'
 
 function Checkout() {
     const [{user, basket }, dispatch] = useStateValue()
@@ -11,6 +12,36 @@ function Checkout() {
         to: { transform: 'scale(1, 1)' }
     };
     console.log("basket in checkout>>>", basket)
+
+     const removeBasket = (e, item) => {
+       console.log("item selected to remove", item)
+       dispatch({
+            type: 'REMOVE_FROM_BASKET',
+            id: item._id,
+        })
+      e.preventDefault()
+        // dispatch the item into the data layer
+         fetch('http://localhost:5000/removeCart',   
+            {method: "put",
+             headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+              
+              _id:user._id,id: item.id, title:item.title,image:item.image,price:item.price,rating:item.rating
+            })
+     })
+     .then(res=> res.json())
+     .then(data => {
+       console.log("data in remote basket >> ", data)
+
+             dispatch({
+            type: "ADD_TO_BASKET",
+            basket:data.result.cart
+        });
+    
+       })
+   }
     return (
         <div className="checkout">
             <div className="checkout_left">
@@ -23,14 +54,37 @@ function Checkout() {
                     <FlipMove enterAnimation={customEnterAnimation}>
                         {
                             basket.map(item => (
-                                <CheckoutProduct
-                                    _id={item._id}
-                                    id={item.id}
-                                    title={item.title}
-                                    price={item.price}
-                                    image={item.image}
-                                    rating={item.rating}
-                                />
+
+                                       <div className="checkoutProduct">
+                                            <img className="checkoutProduct_image" src={item.image} alt={item.title} />
+
+                                            <div className="checkoutProduct_info">
+                                                <p className="checkoutProduct_title">{item.title}</p>
+                                                <p className="checkoutProduct_price">
+                                                    <small>$</small>
+                                                    <strong>{item.price}</strong>
+                                                </p>
+
+
+
+                                                <div className="checkoutProduct_rating">
+                                                  
+                                                </div>
+                                                
+                                                    <button onClick={(e)=> removeBasket(e, item)} >Remove from basket</button>
+                                              
+                                            </div>
+                                        </div >
+
+                                // <CheckoutProduct
+                                //     _id={item._id}
+                                //     key={item.id}
+                                //     id={item.id}
+                                //     title={item.title}
+                                //     price={item.price}
+                                //     image={item.image}
+                                //     rating={item.rating}
+                                // />
                             ))
                         }
                     </FlipMove>
@@ -38,10 +92,9 @@ function Checkout() {
 
             </div>
 
-            <div className="checkout_right">
-              
+              <div className="checkout_right">
+                <Subtotal />
             </div>
-
         </div >
     )
 }

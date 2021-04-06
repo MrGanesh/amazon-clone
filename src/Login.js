@@ -31,7 +31,7 @@ function Login() {
        },
        {
          type:'ADD_TO_BASKET',
-         user:data.user.cart
+         basket:data.cart
        }
        )
       

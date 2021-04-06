@@ -6,9 +6,9 @@
 }
 
 .home_row {
-  display: flex;
-  z-index: 1;
-  margin: 0px 5px 0px 5px;
+ display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
 }
 
 .home_image {
@@ -18,5 +18,4 @@
   mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
 }
 
-.home_row {
-}
+

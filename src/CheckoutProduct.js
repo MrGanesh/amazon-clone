@@ -21,12 +21,14 @@ function CheckoutProduct({   id, title, image, price, rating, hideButton }) {
     
     //    })
     // }, [])
-    useEffect(()=> {
-
-    }, [basket])
+  
     console.log("user in checkoutproduct>>",user)
 
     const removeBasket = (e) => {
+       dispatch({
+            type: 'REMOVE_FROM_BASKET',
+            id: id,
+        })
       e.preventDefault()
         // dispatch the item into the data layer
          fetch('http://localhost:5000/removeCart',   
@@ -41,7 +43,7 @@ function CheckoutProduct({   id, title, image, price, rating, hideButton }) {
      })
      .then(res=> res.json())
      .then(data => {
-       console.log(data.result.cart)
+       console.log("data in remote basket >> ", data)
 
              dispatch({
             type: "ADD_TO_BASKET",
