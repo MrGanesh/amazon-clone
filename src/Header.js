@@ -4,6 +4,7 @@ import './Header.css'
 // import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
 import { Link } from 'react-router-dom'
 import {useStateValue} from './StateProvider'
+import SellProduct from './SellProduct'
 function Header() {
   const [{user, basket}, dispatch] = useStateValue()
   const handleLogin = (e) => {
@@ -44,10 +45,13 @@ function Header() {
                         <span className="option_lienTwo">& Orders</span>
                     </div>
                 </Link>
+
+                <Link to='/sellProduct'>
                 <div className="header_option">
-                    <span className="option_lienOne">Your</span>
-                    <span className="option_lienTwo">Prime</span>
+                    <span className="option_lienOne">Sell</span>
+                    <span className="option_lienTwo">Product</span>
                 </div>
+                </Link>
 
                 <Link to='/checkout'>
                     <div className="header_optionBasket">

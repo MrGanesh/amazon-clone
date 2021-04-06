@@ -9,6 +9,7 @@ import Payment from './Payment';
 import Orders from './Orders';
 import Signup from './Signup'
 import {useStateValue} from './StateProvider'
+import SellProduct from './SellProduct'
 export default function App() {
   const [{user, basket}, dispatch] = useStateValue()
    useEffect(() => {
@@ -53,6 +54,9 @@ export default function App() {
           </Route>
           <Route path="/checkout">
             <Checkout />
+          </Route>
+          <Route path="/sellProduct">
+            <SellProduct />
           </Route>
           <Route path="/payment">
           
