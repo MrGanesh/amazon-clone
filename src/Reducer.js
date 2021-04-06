@@ -1,4 +1,5 @@
 export const initialState = {
+   product:[],
    basket:[],
     user: null
 }
@@ -8,7 +9,15 @@ export const initialState = {
 const reducer = (state, action) => {
     console.log(action)
     switch (action.type) {
-     
+
+//action for products
+case 'ADD_TO_PRODUCT': 
+      return{
+        ...state,
+        product:action.product
+      }
+
+
 //action for Basket
 
  case 'ADD_TO_BASKET': {

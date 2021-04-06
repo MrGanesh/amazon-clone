@@ -18,10 +18,24 @@ export default function App() {
       // history.push('/')
     }
 
-    if(user.cart){
+    if(user?.cart){
        dispatch({type:"ADD_TO_BASKET",basket:user.cart})   
     }
   },[])
+
+  useEffect(() => {
+      fetch('http://localhost:5000/getProducts', {
+        method:"get",
+
+      }).then(res => res.json())
+      .then(data => {
+        dispatch({
+          type:'ADD_TO_PRODUCT',
+          product: data.result
+        })
+      })
+  }, [])
+
   return (
      <Router>
     
