@@ -4,7 +4,7 @@ import {useStateValue} from './StateProvider'
 function CheckoutProduct({   id, title, image, price, rating, hideButton }) {
     const [{user, basket}, dispatch] = useStateValue()
     // useEffect(()=>{
-    //    fetch(http://localhost:5000/getCart/user._id,   
+    //    fetch('http://localhost:5000/getCart/user._id',   
     //         {method: "get",
     //          headers: {
     //             "Content-Type": "application/json"
@@ -21,6 +21,9 @@ function CheckoutProduct({   id, title, image, price, rating, hideButton }) {
     
     //    })
     // }, [])
+    useEffect(()=> {
+
+    }, [basket])
     console.log("user in checkoutproduct>>",user)
 
     const removeBasket = (e) => {

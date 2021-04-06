@@ -17,7 +17,7 @@ function Home() {
                 <div className="home_row">
                   {
                     product.map(item => (
-                          <Product key={item._id} id={item.id} title={item.title} price={item.price}
+                          <Product key={item._id} id={item._id} title={item.title} price={item.price}
                                    image={item.image} rating={item.rating}
                            />
                     ))

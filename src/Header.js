@@ -5,7 +5,7 @@ import './Header.css'
 import { Link } from 'react-router-dom'
 import {useStateValue} from './StateProvider'
 function Header() {
-  const [{user}, dispatch] = useStateValue()
+  const [{user, basket}, dispatch] = useStateValue()
   const handleLogin = (e) => {
     e.preventDefault()
     dispatch({
@@ -52,7 +52,7 @@ function Header() {
                 <Link to='/checkout'>
                     <div className="header_optionBasket">
                     
-                        // <span className="header_optionLienTwo header_BasketCount" >0</span>
+                        <span className="header_optionLienTwo header_BasketCount" >{basket ? basket.length : '0'}</span>
                     </div>
                 </Link>
 
