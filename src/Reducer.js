@@ -1,7 +1,8 @@
 export const initialState = {
    product:[],
    basket:[],
-    user: null
+   order:[],
+   user: null
 }
 
 export const getBasketTotal = (basket) =>
@@ -10,6 +11,14 @@ export const getBasketTotal = (basket) =>
 const reducer = (state, action) => {
     console.log(action)
     switch (action.type) {
+
+//action for order
+case 'ADD_TO_ORDER': 
+      return{
+        ...state,
+        order:action.basket
+      }
+
 
 //action for products
 case 'ADD_TO_PRODUCT': 

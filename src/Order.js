@@ -4,7 +4,7 @@ import CurrencyFormat from 'react-currency-format'
 import CheckoutProduct from './CheckoutProduct'
 import './Order.css'
 function Order({ order }) {
-
+  console.log("order in order.js >> ", order)
     return (
         <div className="order">
             <h2>Order</h2>

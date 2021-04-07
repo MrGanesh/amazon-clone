@@ -6,8 +6,19 @@ import { useStateValue } from './StateProvider'
 import { getBasketTotal } from './Reducer'
 function Subtotal() {
    
-    const [{ basket }, dispatch] = useStateValue();
-    console.log(getBasketTotal(basket))
+    const [{ user,basket, order }, dispatch] = useStateValue();
+ 
+
+    const orderNow = (e) => {
+      e.preventDefault()
+      dispatch({
+        type:'ADD_TO_ORDER',
+        order: basket
+      }  
+      )
+
+    }
+
     return (
         <div className="subtotal">
 
@@ -34,7 +45,7 @@ function Subtotal() {
 
             />
 
-            <button onClick={}>Proceed to Checkout</button>
+            <button onClick={(e) => orderNow(e)}>Proceed to Checkout</button>
 
         </div>
     )
