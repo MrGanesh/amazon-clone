@@ -70,8 +70,9 @@ function CheckoutProduct({   id, title, image, price, rating, hideButton }) {
                 <div className="checkoutProduct_rating">
                   
                 </div>
-                
-                    <button onClick={(e)=> removeBasket(e)} >Remove from basket</button>
+                 {!hideButton &&
+                    (<button onClick={removeBasket}>Remove from basket</button>)
+                }
                
             </div>
         </div >

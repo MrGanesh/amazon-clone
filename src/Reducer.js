@@ -16,7 +16,7 @@ const reducer = (state, action) => {
 case 'ADD_TO_ORDER': 
       return{
         ...state,
-        order:action.basket
+        order:action.order
       }
 
 

@@ -14,7 +14,8 @@ export default function App() {
   const [{user, basket}, dispatch] = useStateValue()
    useEffect(() => {
     const user = JSON.parse( localStorage.getItem('user') )
-    if(user){  
+    if(user){ 
+    
       dispatch({type:"SET_USER",user:user})   
       // history.push('/')
     }

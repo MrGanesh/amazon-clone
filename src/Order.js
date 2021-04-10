@@ -3,17 +3,17 @@ import React from 'react'
 import CurrencyFormat from 'react-currency-format'
 import CheckoutProduct from './CheckoutProduct'
 import './Order.css'
-function Order({ order }) {
+function Order({  }) {
   console.log("order in order.js >> ", order)
     return (
         <div className="order">
             <h2>Order</h2>
-            <p>{moment.unix(order.data.created).format('MMMM Do YYYY, b:mma')}</p>
+            {/* <p>{moment.unix(order.data.created).format('MMMM Do YYYY, b:mma')}</p>
 
-            <p className="order_id"><small>{order.id}</small></p>
+            <p className="order_id"><small>{order.id}</small></p> */}
 
             {
-                order.data.basket?.map(item => (
+                order.map(item => (
                     <CheckoutProduct
                         id={item.id}
                         title={item.title}
@@ -26,7 +26,7 @@ function Order({ order }) {
 
                 ))
             }
-            <CurrencyFormat
+            {/* <CurrencyFormat
                 renderText={(value) => (
                     <h3 className="order_total">Order Total: {value}</h3>
                 )}
@@ -37,7 +37,7 @@ function Order({ order }) {
                 thousandSeparator={true}
                 prefix={"$"}
 
-            />
+            /> */}
 
 
         </div>

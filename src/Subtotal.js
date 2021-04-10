@@ -13,12 +13,12 @@ function Subtotal() {
       e.preventDefault()
       dispatch({
         type:'ADD_TO_ORDER',
-        order: basket
+        order: basket.map(item =>  item)
       }  
       )
 
     }
-
+      console.log("order in subtotal >> ", order)
     return (
         <div className="subtotal">
 
