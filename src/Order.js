@@ -3,8 +3,8 @@ import React from 'react'
 import CurrencyFormat from 'react-currency-format'
 import CheckoutProduct from './CheckoutProduct'
 import './Order.css'
-function Order({  }) {
-  console.log("order in order.js >> ", order)
+function Order({ }) {
+
     return (
         <div className="order">
             <h2>Order</h2>
@@ -12,7 +12,7 @@ function Order({  }) {
 
             <p className="order_id"><small>{order.id}</small></p> */}
 
-            {
+            {/* {
                 order.map(item => (
                     <CheckoutProduct
                         id={item.id}
@@ -25,7 +25,7 @@ function Order({  }) {
 
 
                 ))
-            }
+            } */}
             {/* <CurrencyFormat
                 renderText={(value) => (
                     <h3 className="order_total">Order Total: {value}</h3>

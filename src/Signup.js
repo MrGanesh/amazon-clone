@@ -3,16 +3,16 @@ import './Signup.css'
 import { Link, useHistory } from 'react-router-dom'
 
 function Signup() {
-  
+    const history = useHistory()
     const [email, setEmail] = useState('')
     const [name, setName] = useState('')
     const [password, setPassword] = useState('')
- 
-   const setSignup = (e) => {
-     e.preventDefault()
-     fetch('http://localhost:5000/signup', { 
+
+    const setSignup = (e) => {
+        e.preventDefault()
+        fetch('https://new-amazon-clone.herokuapp.com/signup', {
             method: "post",
-             headers: {
+            headers: {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
@@ -20,13 +20,13 @@ function Signup() {
                 email,
                 password
             })
-     })
-     .then(res=> res.json())
-     .then(data => {
-       console.log(data)
-       
-       })
-   }
+        })
+            .then(res => res.json())
+            .then(data => {
+
+                history.push('/login')
+            })
+    }
 
 
     return (
@@ -47,7 +47,7 @@ function Signup() {
                     <input type="text" value={email} onChange={(e) => setEmail(e.target.value)} />
                     <h5>Password</h5>
                     <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
-                    <button type="submit" onClick={(e)=> setSignup(e)} className="login_signBUtton" >Sign In</button>
+                    <button type="submit" onClick={(e) => setSignup(e)} className="login_signBUtton" >Sign In</button>
                 </form>
 
                 <p>
@@ -55,7 +55,7 @@ function Signup() {
                     Please sea our Privacy Notice, our Cookies notice and our Interest Based ads Notice.
                     </p>
                 <Link to='/login'>
-                <button className="login_rigisterBUtton">Already have a account?</button>
+                    <button className="login_rigisterBUtton">Already have a account?</button>
                 </Link>
             </div>
 

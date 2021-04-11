@@ -5,7 +5,7 @@ import { useStateValue } from "./StateProvider";
 import CheckoutProduct from "./CheckoutProduct";
 function Orders() {
   const [{ order, user }, dispatch] = useStateValue();
-  console.log("user in orders.js >>>", user);
+
   return (
     <div className="orders">
       <h3>Your Orders</h3>
@@ -22,17 +22,17 @@ function Orders() {
               Order Id : <small>{user?._id}</small>
             </p>
             {
-            order.map(item => (
-            <CheckoutProduct
-              id={item.id}
-              title={item.title}
-              image={item.image}
-              price={item.price}
-              rating={item.rating}
-              hideButton = {true}
-            />
-            ))
-}
+              order.map(item => (
+                <CheckoutProduct
+                  id={item.id}
+                  title={item.title}
+                  image={item.image}
+                  price={item.price}
+                  rating={item.rating}
+                  hideButton={true}
+                />
+              ))
+            }
           </div>
         ) : (
           <div className="order">

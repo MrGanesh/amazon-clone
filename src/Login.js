@@ -1,44 +1,44 @@
 import React, { useState } from 'react'
 import './Login.css'
 import { Link, useHistory } from 'react-router-dom'
-import {useStateValue} from './StateProvider'
+import { useStateValue } from './StateProvider'
 function Login() {
-   
+    const history = useHistory();
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-    const [{user}, dispatch]= useStateValue()
-     const setSignin = (e) => {
-     e.preventDefault()
-     fetch('http://localhost:5000/signin', { 
+    const [{ user }, dispatch] = useStateValue()
+    const setSignin = (e) => {
+        e.preventDefault()
+        fetch('https://new-amazon-clone.herokuapp.com/signin', {
             method: "post",
-             headers: {
+            headers: {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
-              
+
                 email,
                 password
             })
-     })
-     .then(res=> res.json())
-     .then(data => {
-       console.log(data)
-         localStorage.setItem("jwt",data.token)
-        localStorage.setItem("user",JSON.stringify(data.user))
-       dispatch({
-         type:'SET_USER',
-         user:data.user
-       },
-       {
-         type:'ADD_TO_BASKET',
-         basket:data.cart
-       }
-       )
-      
-    
-       })
-   }
-  console.log(user)
+        })
+            .then(res => res.json())
+            .then(data => {
+
+                localStorage.setItem("jwt", data.token)
+                localStorage.setItem("user", JSON.stringify(data.user))
+                dispatch({
+                    type: 'SET_USER',
+                    user: data.user
+                },
+                    {
+                        type: 'ADD_TO_BASKET',
+                        basket: data.cart
+                    }
+                )
+
+                history.push('/')
+            })
+    }
+
     return (
         <div className="login">
             <Link to="/">
@@ -55,7 +55,7 @@ function Login() {
                     <input type="text" value={email} onChange={(e) => setEmail(e.target.value)} />
                     <h5>Password</h5>
                     <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
-                    <button type="submit" onClick={(e)=> setSignin(e)} className="login_signBUtton" >Sign In</button>
+                    <button type="submit" onClick={(e) => setSignin(e)} className="login_signBUtton" >Sign In</button>
                 </form>
 
                 <p>
@@ -63,7 +63,7 @@ function Login() {
                     Please sea our Privacy Notice, our Cookies notice and our Interest Based ads Notice.
                     </p>
                 <Link to="/signup">
-                <button className="login_rigisterBUtton">Create your amazon account</button>
+                    <button className="login_rigisterBUtton">Create your amazon account</button>
                 </Link>
             </div>
 

@@ -1,8 +1,8 @@
-import React, {useEffect} from 'react'
+import React, { useEffect } from 'react'
 import './CheckoutProduct.css'
-import {useStateValue} from './StateProvider'
-function CheckoutProduct({   id, title, image, price, rating, hideButton }) {
-    const [{user, basket}, dispatch] = useStateValue()
+import { useStateValue } from './StateProvider'
+function CheckoutProduct({ id, title, image, price, rating, hideButton }) {
+    const [{ user, basket }, dispatch] = useStateValue()
     // useEffect(()=>{
     //    fetch('http://localhost:5000/getCart/user._id',   
     //         {method: "get",
@@ -18,40 +18,40 @@ function CheckoutProduct({   id, title, image, price, rating, hideButton }) {
     //         type: "ADD_TO_BASKET",
     //         basket:data
     //     });
-    
+
     //    })
     // }, [])
-  
-    console.log("user in checkoutproduct>>",user)
+
 
     const removeBasket = (e) => {
-       dispatch({
+        dispatch({
             type: 'REMOVE_FROM_BASKET',
             id: id,
         })
-      e.preventDefault()
+        e.preventDefault()
         // dispatch the item into the data layer
-         fetch('http://localhost:5000/removeCart',   
-            {method: "put",
-             headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-              
-              _id:user._id, id, title, image, price, rating
-            })
-     })
-     .then(res=> res.json())
-     .then(data => {
-       console.log("data in remote basket >> ", data)
+        fetch('https://new-amazon-clone.herokuapp.com/removeCart',
+            {
+                method: "put",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
 
-             dispatch({
-            type: "ADD_TO_BASKET",
-            basket:data.result.cart
-        });
-    
-       })
-   }
+                    _id: user._id, id, title, image, price, rating
+                })
+            })
+            .then(res => res.json())
+            .then(data => {
+
+
+                dispatch({
+                    type: "ADD_TO_BASKET",
+                    basket: data.result.cart
+                });
+
+            })
+    }
 
 
     return (
@@ -68,12 +68,12 @@ function CheckoutProduct({   id, title, image, price, rating, hideButton }) {
 
 
                 <div className="checkoutProduct_rating">
-                  
+
                 </div>
-                 {!hideButton &&
+                {!hideButton &&
                     (<button onClick={removeBasket}>Remove from basket</button>)
                 }
-               
+
             </div>
         </div >
     )
